@@ -32,7 +32,6 @@ void    Contact::displayField(String field) {
     std::cout << field << "|";
 }
 
-
 void    Contact::displayRow(int index) {
     String data[] = {this->firstName, this->lastName, this->nickname};
     // Printing index.
@@ -44,16 +43,7 @@ void    Contact::displayRow(int index) {
     }
 }
 
-bool    Contact::isUndefined() {
-    String data[] = {firstName, lastName, nickname, phoneNumber, darkestSecret};
-    for (int i = 0; i < 5; i++) {
-        if (data[i] != "Undefined")
-            return false;
-    }
-    return true;
-}
-
-// Builder Setters
+// Setters
 void    Contact::setNickname(String nickname) {
     this->nickname = nickname;
 }
@@ -67,14 +57,20 @@ void    Contact::setLastName(String lastName) {
 }
 
 bool    Contact::setPhoneNumber(String phoneNumber) {
-    if (!isNumeric(phoneNumber))
+    if (!isNumeric(phoneNumber)) {
+        std::cout << "Invalid phone number!" << std::endl;
         return false;
+    }
     this->phoneNumber = phoneNumber;
     return true;
 }
 
 void    Contact::setDarkestSecret(String darkestSecret) {
     this->darkestSecret = darkestSecret;
+}
+
+String  Contact::getFirstName() {
+    return this->firstName;
 }
 
 void	Contact::toString() {

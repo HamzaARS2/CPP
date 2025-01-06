@@ -4,9 +4,9 @@
 
 void    displayMenu() {
     std::cout << "| Main Menu |" << "\n\n";
-    std::cout << "   *ADD" << std::endl;
-    std::cout << "   *SEARCH" << std::endl;
-    std::cout << "   *EXIT" << "\n\n";
+    std::cout << "   * ADD" << std::endl;
+    std::cout << "   * SEARCH" << std::endl;
+    std::cout << "   * EXIT" << "\n\n";
     std::cout << " Enter your command here: ";
 }
 
@@ -14,37 +14,51 @@ void    displayMenu() {
 void    runAddCommand(PhoneBook& phoneBook) {
     Contact contact;
 
-    String firstName = requestInput("First name: ");
-    contact.setFirstName(firstName);
-    String lastName = requestInput("Last name: ");
-    contact.setLastName(lastName);
-    String nickName = requestInput("Nickname: ");
-    contact.setNickname(nickName);
+    contact.setFirstName(requestInput("First name: "));
+    contact.setLastName(requestInput("Last name: "));
+    contact.setNickname(requestInput("Nickname: "));
     while (true) {
-        String phoneNumber = requestInput("Phone Number: ");
+        String phoneNumber = requestInput("Phone number: ");
         if (contact.setPhoneNumber(phoneNumber))
             break;
-        std::cout << "Invalid phone number, try again!" << std::endl;
     }
-    String darkestSecret = requestInput("Darkest secret: ");
-    contact.setDarkestSecret(darkestSecret);
-    // TODO: add a method to the contact class for checking if all fields are empty.
-    if (!contact.isUndefined())
-        phoneBook.addContact(contact);
+    contact.setDarkestSecret(requestInput("Darkest secret: "));
+    phoneBook.addContact(contact);
 }
 
 void    runSearchCommand(PhoneBook phoneBook) {
+    String index;
+
     phoneBook.displayContacts();
+    while (true) {
+        index = requestInput("Enter an index: ");
+        if (isNumeric(index))
+            break;
+        std::cout << "Invalid type of index!" << std::endl;
+    }
+    try {
+        Contact contact = phoneBook.searchContact(std::atoi(index.c_str()));
+        Contact::displayField(contact.getFirstName());
+    } catch(std::out_of_range& e) {
+        std::cout << e.what()
+            << ": please enter an index between 0 and "
+            << phoneBook.getSize() - 1 << " included" << std::endl;
+            runSearchCommand(phoneBook);
+    }
 }
 
+void    foo() {
+    system("leaks -q phone");
+}
 
 int main() {
     PhoneBook phoneBook;
     String command;
 
+    atexit(foo);
     while (true) {
         displayMenu();
-        std::cin  >> command;
+        std::getline(std::cin, command);
         if (!checkCommand(command))
             continue;
         switch (command[0]) {

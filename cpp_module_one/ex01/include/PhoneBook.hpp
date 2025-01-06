@@ -16,13 +16,8 @@ class PhoneBook {
         PhoneBook();
 		void	addContact(Contact contact);
 		void	displayContacts();
-		Contact createContact(
-		        String nickname,
-		        String firstName,
-		        String lastName,
-		        String phoneNumber,
-		        String DarkestSecret
-		        );
+		Contact	searchContact(int index);
+		int		getSize();
 };
 
 

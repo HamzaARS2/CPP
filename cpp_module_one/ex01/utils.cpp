@@ -9,8 +9,13 @@ bool    checkCommand(String command) {
 
 String  requestInput(String prompt) {
     String data;
-    std::cout << std::setw(20) << prompt;
-    std::cin >> data;
+    while (true) {
+        std::cout << std::setw(15) << std::left << prompt ;
+        std::getline(std::cin, data);
+        if (!data.empty())
+            break;
+        std::cout << "This field cant be empty!" << std::endl;
+    }
     return data;
 }
 

@@ -28,14 +28,14 @@ class Contact {
         // Displays the given field
         static void displayField(String field);
 
-        bool    isUndefined();
-
 		// Setters
 		void    setNickname(String nickname);
 		void    setFirstName(String firstName);
 		void    setLastName(String lastName);
 		bool    setPhoneNumber(String phoneNumber);
 		void    setDarkestSecret(String darkestSecret);
+
+		String	getFirstName();
 };
 
 #endif

@@ -13,6 +13,7 @@ void    PhoneBook::addContact(Contact contact) {
 }
 
 void    PhoneBook::displayContacts() {
+    std::cout << std::endl;
     Contact::displayField("Index");
     Contact::displayField("First name");
     Contact::displayField("Last name");
@@ -28,4 +29,14 @@ void    PhoneBook::displayContacts() {
         std::cout << std::endl;
     }
     std::cout << std::endl;
+}
+
+Contact PhoneBook::searchContact(int index) {
+    if (index < 0 || index > size)
+        throw std::out_of_range("Invalid index!");
+    return contacts[index];
+}
+
+int PhoneBook::getSize() {
+    return this->size;
 }
