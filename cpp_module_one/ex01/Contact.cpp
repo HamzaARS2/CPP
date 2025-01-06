@@ -57,7 +57,7 @@ void    Contact::setLastName(String lastName) {
 }
 
 bool    Contact::setPhoneNumber(String phoneNumber) {
-    if (!isNumeric(phoneNumber)) {
+    if (!isNumeric(phoneNumber, false)) {
         std::cout << "Invalid phone number!" << std::endl;
         return false;
     }

@@ -32,7 +32,7 @@ void    PhoneBook::displayContacts() {
 }
 
 Contact PhoneBook::searchContact(int index) {
-    if (index < 0 || index > size)
+    if (index < 0 || index >= size)
         throw std::out_of_range("Invalid index!");
     return contacts[index];
 }

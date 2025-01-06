@@ -1,6 +1,7 @@
 #include "include/utils.h"
 #include "include/PhoneBook.hpp"
 #include "include/Contact.hpp"
+#include "stdlib.h"
 
 void    displayMenu() {
     std::cout << "| Main Menu |" << "\n\n";
@@ -32,13 +33,13 @@ void    runSearchCommand(PhoneBook phoneBook) {
     phoneBook.displayContacts();
     while (true) {
         index = requestInput("Enter an index: ");
-        if (isNumeric(index))
+        if (isNumeric(index, true))
             break;
         std::cout << "Invalid type of index!" << std::endl;
     }
     try {
-        Contact contact = phoneBook.searchContact(std::atoi(index.c_str()));
-        Contact::displayField(contact.getFirstName());
+        Contact contact = phoneBook.searchContact(atoi(index.c_str()));
+        contact.toString();
     } catch(std::out_of_range& e) {
         std::cout << e.what()
             << ": please enter an index between 0 and "
@@ -47,15 +48,15 @@ void    runSearchCommand(PhoneBook phoneBook) {
     }
 }
 
-void    foo() {
-    system("leaks -q phone");
-}
+// void    foo() {
+//     system("leaks -q phone");
+// }
 
 int main() {
     PhoneBook phoneBook;
     String command;
 
-    atexit(foo);
+    // atexit(foo);
     while (true) {
         displayMenu();
         std::getline(std::cin, command);

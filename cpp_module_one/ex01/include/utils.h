@@ -7,5 +7,5 @@
 // Utils.
 bool    checkCommand(String command);
 String  requestInput(String prompt);
-bool    isNumeric(String str);
+bool    isNumeric(String str, bool skipSpaces);
 #endif

@@ -19,9 +19,14 @@ String  requestInput(String prompt) {
     return data;
 }
 
-bool    isNumeric(String str) {
-    for (int i = 0; str[i]; i++) {
-        if (!std::isdigit(str[i]))
+bool    isNumeric(String str, bool skipSpaces) {
+    int i = 0;
+
+    if (skipSpaces)
+        while (std::isspace(str[i]) || str[i] == '+' || str[i] == '-')
+            i++;
+    while (str[i]) {
+        if (!std::isdigit(str[i++]))
             return false;
     }
     return true;
