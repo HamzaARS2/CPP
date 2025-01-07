@@ -74,10 +74,12 @@ String  Contact::getFirstName() {
 }
 
 void	Contact::toString() {
-	std::cout << "nickname: " << nickname << "\n"
+	std::cout << "\n---- Result -----" << std::endl
+            << "nickname: " << nickname << "\n"
 			<< "First Name: " << firstName << "\n"
 			<< "Last Name: " << lastName << "\n"
 			<< "Phone Number: " << phoneNumber << "\n"
-			<< "Darkest Secret: " << darkestSecret
+			<< "Darkest Secret: " << darkestSecret << "\n"
+            << "---------------------" << "\n"
 			<< std::endl;
 }
