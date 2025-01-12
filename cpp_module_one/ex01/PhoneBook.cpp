@@ -17,7 +17,7 @@ void    PhoneBook::displayContacts() {
     Contact::displayField("Index");
     Contact::displayField("First name");
     Contact::displayField("Last name");
-    Contact::displayField("P.Number");
+    Contact::displayField("Nickname");
 
     std::cout << std::endl;
     for (int i = 0; i < 4; i++)
