@@ -1,0 +1,13 @@
+
+
+#include "Zombie.hpp"
+
+
+Zombie* zombieHorde(String name, int N) {
+	if (N <= 0) 
+		return NULL;
+	Zombie *zombies = new Zombie[N];
+	for (int i = 0; i < N; i++)
+		zombies[i].setName(name);
+	return zombies;
+}
