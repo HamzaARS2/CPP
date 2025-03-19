@@ -2,10 +2,8 @@
 #include "HumanA.hpp"
 
 
-HumanA::HumanA(String name, Weapon weapon) {
-	this->name = name;
-	this->weapon = weapon;
-}
+HumanA::HumanA(String name, Weapon& weapon)
+	: name(name), weapon(weapon) {}
 
 void	HumanA::attack() {
 	std::cout << this->name 

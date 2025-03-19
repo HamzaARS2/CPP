@@ -9,10 +9,10 @@ typedef std::string String;
 class HumanA {
 	private:
 		String name;
-		Weapon weapon;
+		Weapon& weapon;
 	
 	public:
-		HumanA(String name, Weapon weapon);
+		HumanA(String name, Weapon& weapon);
 		void	attack();
 		void	setWeapon(Weapon weapon);
 		Weapon	getWeapon();

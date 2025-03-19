@@ -9,12 +9,12 @@ typedef std::string String;
 class HumanB {
 	private:
 		String name;
-		Weapon weapon;
+		Weapon* weapon;
 	
 	public:
 		HumanB(String name);
 		void	attack();
-		void	setWeapon(Weapon weapon);
+		void	setWeapon(Weapon& weapon);
 		Weapon	getWeapon();
 };
 
