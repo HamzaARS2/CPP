@@ -1,19 +1,20 @@
 CC := g++
 
-# CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -Wall -Wextra -Werror 
 
-SOURCES := main.cpp
+SOURCES := main.cpp InputFile.cpp OutputFile.cpp IOFileManager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-NAME := sed
+NAME := fileStreams
 
+ADS = -fsanitize=address -g
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(ADS) $(CFLAGS) $^ -o $@
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(ADS) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJECTS)
