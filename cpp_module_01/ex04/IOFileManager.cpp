@@ -9,12 +9,17 @@ IOFileManager::~IOFileManager() {
 }
 
 String  IOFileManager::replaceLine(String original, String toReplace, String toAdd) {
+    String newStr;
     std::size_t pos = original.find(toReplace);
-    std::size_t lastPos = pos + toReplace.size();
 
-    String newStr = original.substr(0, pos);
-    newStr.append(toAdd).append(original.substr(lastPos));
-
+    while (pos != String::npos) {
+        std::size_t lastPos = pos + toReplace.size();
+        newStr.append(original.substr(0, pos));
+        newStr.append(toAdd);
+        original = original.substr(lastPos);
+        pos = original.find(toReplace);
+    }
+    newStr.append(original);
     return newStr;
 }
 
