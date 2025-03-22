@@ -6,5 +6,6 @@
 int main() {
     Harl harl;
 
-    harl.complain("Dwad");
+    harl.complain("DEBUG");
+    
 }

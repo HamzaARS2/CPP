@@ -1,6 +1,13 @@
 #include "Harl.hpp"
 
 
+Harl::Harl() {
+    this->array[0] = &(this->debug);
+    this->array[1] = Harl::info;
+    this->array[2] = Harl::warning;
+    this->array[3] = Harl::error;
+}
+
 void    Harl::debug() {
     std::cout << "debug:I love having extra bacon for my \
     7XL-double-cheese-triple-pickle-specialketchup \
@@ -26,11 +33,11 @@ void    Harl::error() {
 }
 
 void    Harl::complain(String level) {
-    void (Harl::*debug)(void);
-    void (Harl::*info)(void);
-    void (Harl::*warning)(void);
-    void (Harl::*error)(void);
-    // (void (Harl::)) strArray[2];
-
-
+    String strLvls[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    for (int i = 0; i < 4; i++) {
+        if (level.compare(strLvls[i])) {
+            this->array[i];
+            break;
+        }
+    }
 }
