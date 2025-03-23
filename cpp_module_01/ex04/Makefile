@@ -1,4 +1,4 @@
-CC := g++
+CC := c++
 
 CFLAGS := -Wall -Wextra -Werror 
 
@@ -6,15 +6,14 @@ SOURCES := main.cpp InputFile.cpp OutputFile.cpp IOFileManager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME := fileStreams
 
-ADS = -fsanitize=address -g
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(ADS) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.cpp
-	$(CC) $(ADS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJECTS)

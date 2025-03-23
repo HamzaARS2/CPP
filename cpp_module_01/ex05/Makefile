@@ -2,11 +2,10 @@ CC := c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SOURCES := main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SOURCES := main.cpp Harl.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+NAME := harl
 
-OBJECTS := $(SOURCES:.cpp=.o)
-
-NAME := zombie
 
 all: $(NAME)
 
