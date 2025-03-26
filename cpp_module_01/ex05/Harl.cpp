@@ -9,19 +9,19 @@ Harl::Harl() {
 }
 
 void Harl::debug() {
-    std::cout << "DEBUG: More bacon makes everything better!" << std::endl;
+    std::cout << "[ DEBUG ]\nMore bacon makes everything better!\n" << std::endl;
 }
 
 void Harl::info() {
-    std::cout << "INFO: Extra bacon shouldn't cost extra!" << std::endl;
+    std::cout << "[ INFO ]\nExtra bacon shouldn't cost extra!\n" << std::endl;
 }
 
 void Harl::warning() {
-    std::cout << "WARNING: I deserve free bacon for being a loyal customer!" << std::endl;
+    std::cout << "[ WARNING ]\nI deserve free bacon for being a loyal customer!\n" << std::endl;
 }
 
 void Harl::error() {
-    std::cout << "ERROR: Get me the manager. Now!" << std::endl;
+    std::cout << "[ ERROR ]\nGet me the manager. Now!\n" << std::endl;
 }
 
 

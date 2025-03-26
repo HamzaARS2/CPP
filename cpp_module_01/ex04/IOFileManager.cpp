@@ -4,10 +4,6 @@
 IOFileManager::IOFileManager(InputFile& inFile)
     : inFile(inFile) {}
 
-IOFileManager::~IOFileManager() {
-    
-}
-
 String  IOFileManager::replaceLine(String original, String toReplace, String toAdd) {
     String newStr;
     std::size_t pos = original.find(toReplace);
@@ -24,7 +20,8 @@ String  IOFileManager::replaceLine(String original, String toReplace, String toA
 }
 
 OutputFile*  IOFileManager::replaceFileData(String s1, String s2) {
-    OutputFile* outFile = new OutputFile("output.txt");
+    String outputName = this->inFile.getFilename().append(".replace");
+    OutputFile* outFile = new OutputFile(outputName);
     while(this->inFile.readline()) {
         String line = this->inFile.getLine();
         String newLine = this->replaceLine(line, s1, s2);

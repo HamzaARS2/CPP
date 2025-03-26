@@ -1,6 +1,6 @@
 CC := c++
 
-CFLAGS := -Wall -Wextra -Werror 
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SOURCES := main.cpp InputFile.cpp OutputFile.cpp IOFileManager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)

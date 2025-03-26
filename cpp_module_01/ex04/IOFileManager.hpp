@@ -13,7 +13,6 @@ class IOFileManager {
 		String		replaceLine(String original, String toReplace, String toAdd);
 	public:
         IOFileManager(InputFile& inFile);
-		~IOFileManager();
 		
         OutputFile*  replaceFileData(String s1, String s2);
 };

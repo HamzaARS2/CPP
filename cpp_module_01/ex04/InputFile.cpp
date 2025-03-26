@@ -2,6 +2,10 @@
 
 InputFile::InputFile(String filename): filename(filename) {
     this->stream.open(filename);
+    if (!this->stream.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+        std::exit(1);
+    }
 }
 
 InputFile::~InputFile() {
@@ -19,4 +23,8 @@ bool  InputFile::readline() {
 
 String  InputFile::getLine() {
     return this->line;
+}
+
+String  InputFile::getFilename() {
+    return this->filename;
 }

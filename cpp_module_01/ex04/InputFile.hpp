@@ -18,6 +18,7 @@ class InputFile {
 		~InputFile();
 		bool readline();
 		String	getLine();
+		String	getFilename();
 };
 
 

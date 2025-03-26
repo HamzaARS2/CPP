@@ -5,6 +5,7 @@ int	main(int ac, char *av[]) {
 		return 1;
 
 	InputFile inputFile(av[1]);
+	
 	IOFileManager fileManager = IOFileManager(inputFile);
 
 	OutputFile* outFile = fileManager.replaceFileData(av[2], av[3]);
