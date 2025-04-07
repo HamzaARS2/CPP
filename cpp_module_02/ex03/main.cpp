@@ -1,8 +1,5 @@
-#include <iostream>
 #include "Point.hpp"
 #include "Fixed.hpp"
-
-// You should already have these functions defined: bsp, calculateArea, etc.
 
 int main() {
     // Test case 1: Point inside the triangle
