@@ -6,7 +6,7 @@
 
 class Fixed {
     private:
-        int fixedPoint;
+        int rawBits;
         static const int fraction = 8;
     
     public:

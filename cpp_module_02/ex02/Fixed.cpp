@@ -1,5 +1,4 @@
 #include "Fixed.hpp"
-#include <stdio.h>
 
 const int Fixed::fraction = 8;
 
@@ -41,27 +40,27 @@ std::ostream& operator<<(std::ostream &out, const Fixed& object) {
 
 // Comparators
 
-bool    Fixed::operator>(const Fixed& other) const {
+bool    Fixed::operator>(const Fixed other) const {
     return this->rawBits > other.rawBits;
 }
 
-bool    Fixed::operator<(const Fixed& other) const {
+bool    Fixed::operator<(const Fixed other) const {
     return this->rawBits < other.rawBits;
 }
 
-bool    Fixed::operator>=(const Fixed& other) {
+bool    Fixed::operator>=(const Fixed other) {
     return this->rawBits >= other.rawBits;
 }
 
-bool    Fixed::operator<=(const Fixed& other) {
+bool    Fixed::operator<=(const Fixed other) {
     return this->rawBits <= other.rawBits;
 }
 
-bool    Fixed::operator==(const Fixed& other) {
+bool    Fixed::operator==(const Fixed other) {
     return this->rawBits == other.rawBits;
 }
 
-bool    Fixed::operator!=(const Fixed& other) {
+bool    Fixed::operator!=(const Fixed other) {
     return this->rawBits != other.rawBits;
 }
 

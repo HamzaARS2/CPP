@@ -10,27 +10,11 @@ int main( void ) {
     std::cout << a++ << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
+    Fixed c(2);
+    Fixed d(10.1016f);
     std::cout << Fixed::max( a, b ) << std::endl;
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+    std::cout << a + b << std::endl;
     return 0;
 }
-    
-
-// int main( void ) {
-//     Fixed a(1);
-//     Fixed b(2);
-
-//     // std::cout << "result " << (a > b) << std::endl;
-//     // std::cout << "result " << (a < b) << std::endl;
-//     // std::cout << "result " << (a >= b) << std::endl;
-//     // std::cout << "result " << (a <= b) << std::endl;
-//     // std::cout << "result " << (a == b) << std::endl;
-//     // std::cout << "result " << (a != b) << std::endl;
-//     // std::cout << "result " << (a + b) << std::endl;
-//     // std::cout << "result " << (a - b) << std::endl;
-//     // std::cout << "result " << (a * b) << std::endl;
-//     // std::cout << "result " << (a / b) << std::endl;
-//     std::cout << "result " << a-- << std::endl;
-//     std::cout << "result " << a << std::endl;
-//     std::cout << "result " << ++a << std::endl;
-//     return 0;
-// }

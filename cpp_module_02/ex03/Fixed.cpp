@@ -1,33 +1,32 @@
 #include "Fixed.hpp"
-#include <stdio.h>
 
 const int Fixed::fraction = 8;
 
 Fixed::Fixed() {
-    // std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
     this->rawBits = 0.0;
 }
 
 Fixed::Fixed(const Fixed& object) {
-    // std::cout << "Copy constructor called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     this->rawBits = object.rawBits;
 }
 
 Fixed::Fixed(const int i) {
-    // std::cout << "Int constructor called" << std::endl;
+    std::cout << "Int constructor called" << std::endl;
     int scale = 1 << fraction;
     this->rawBits = i * scale;
 }
 
 Fixed::Fixed(const float f) {
-    // std::cout << "Float constructor called" << std::endl;
+    std::cout << "Float constructor called" << std::endl;
     int scale = 1 << fraction;
     this->rawBits = roundf(f * scale);
 }
 
 
 Fixed&  Fixed::operator=(const Fixed& other) {
-    // std::cout << "Copy assignment operator called" << std::endl;
+    std::cout << "Copy assignment operator called" << std::endl;
     if (this == &other)
         return *this;
     this->rawBits = other.rawBits;
@@ -41,27 +40,27 @@ std::ostream& operator<<(std::ostream &out, const Fixed& object) {
 
 // Comparators
 
-bool    Fixed::operator>(const Fixed& other) const {
+bool    Fixed::operator>(const Fixed other) const {
     return this->rawBits > other.rawBits;
 }
 
-bool    Fixed::operator<(const Fixed& other) const {
+bool    Fixed::operator<(const Fixed other) const {
     return this->rawBits < other.rawBits;
 }
 
-bool    Fixed::operator>=(const Fixed& other) {
+bool    Fixed::operator>=(const Fixed other) {
     return this->rawBits >= other.rawBits;
 }
 
-bool    Fixed::operator<=(const Fixed& other) {
+bool    Fixed::operator<=(const Fixed other) {
     return this->rawBits <= other.rawBits;
 }
 
-bool    Fixed::operator==(const Fixed& other) {
+bool    Fixed::operator==(const Fixed other) {
     return this->rawBits == other.rawBits;
 }
 
-bool    Fixed::operator!=(const Fixed& other) {
+bool    Fixed::operator!=(const Fixed other) {
     return this->rawBits != other.rawBits;
 }
 
@@ -141,12 +140,12 @@ const Fixed&   Fixed::max(const Fixed& object1, const Fixed& object2) {
 }
 
 int Fixed::getRawBits() const {
-    // std::cout << "getRawBits member function called" << std::endl;
+    std::cout << "getRawBits member function called" << std::endl;
     return this->rawBits;
 }
 
 void    Fixed::setRawBits(int raw) {
-    // std::cout << "setRawBits member function called" << std::endl;
+    std::cout << "setRawBits member function called" << std::endl;
     this->rawBits = raw;
 }
 
@@ -162,5 +161,5 @@ int     Fixed::toInt() const {
 }
 
 Fixed::~Fixed() {
-    // std::cout << "Destructor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
