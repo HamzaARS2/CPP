@@ -16,7 +16,7 @@ class Animal {
         Animal& operator=(const Animal& other);
         String  getType() const;
         virtual void    makeSound() const;
-        ~Animal();
+        virtual ~Animal();
 };
 
 

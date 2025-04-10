@@ -16,7 +16,7 @@ class WrongAnimal {
         WrongAnimal& operator=(const WrongAnimal& other);
         String  getType() const;
         void    makeSound() const;
-        ~WrongAnimal();
+        virtual ~WrongAnimal();
 };
 
 
