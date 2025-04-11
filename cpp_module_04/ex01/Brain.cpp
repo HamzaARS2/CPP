@@ -3,7 +3,7 @@
 Brain::Brain() {
 	std::cout << "Brain constructor called" << std::endl;
 	for (int i = 0; i < 100; i++)
-		this->ideas[i] = "idea #" + std::to_string(i);
+		this->ideas[i] = "Default Idea";
 }
 
 Brain::Brain(const Brain& copy) {
@@ -19,6 +19,18 @@ Brain&	Brain::operator=(const Brain& other) {
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = other.ideas[i];
 	return *this;
+}
+
+void	Brain::setIdea(int index, const String& idea) {
+	if (index < 0 || index >= 100)
+		return;
+	this->ideas[index] = idea;
+}
+
+String	Brain::getIdea(int index) const {
+	if (index < 0 || index >= 100)
+		return "";
+	return this->ideas[index];
 }
 
 Brain::~Brain() {

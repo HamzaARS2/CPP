@@ -14,7 +14,8 @@ class Brain {
 		Brain(const Brain& copy);
 
 		Brain&	operator=(const Brain& other);
-
+		void	setIdea(int index, const String& idea);
+		String	getIdea(int index) const;
 		~Brain();
 };
 
