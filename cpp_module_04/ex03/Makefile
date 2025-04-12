@@ -2,7 +2,7 @@ CC := c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SOURCES := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp
+SOURCES := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME := interface
 
