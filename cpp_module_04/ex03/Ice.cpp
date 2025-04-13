@@ -1,15 +1,12 @@
 #include "Ice.hpp"
 
 Ice::Ice(): AMateria("ice") {
-    std::cout << "Ice constructor called" << std::endl;
 }
 
 Ice::Ice(const Ice& copy): AMateria(copy.type){
-    std::cout << "Ice copy constructor called" << std::endl;
 }
 
 Ice&    Ice::operator=(const Ice& other) {
-    std::cout << "Ice assignment operator called" << std::endl;
     if (this == &other)
         return *this;
     
@@ -25,5 +22,4 @@ void    Ice::use(ICharacter& target) {
 }
 
 Ice::~Ice() {
-    std::cout << "Ice destructor called" << std::endl;
 }

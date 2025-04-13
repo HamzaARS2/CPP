@@ -8,75 +8,49 @@ void    showInventory(ICharacter& character) {
     for (int i = 0; i < 4; i++) {
         AMateria* materia = character.getMateria(i);
         if (materia)
-            std::cout << "slot[" << i << "] = " + materia->getType() << std::endl;
+        std::cout << "Slot[" << i << "] = " + materia->getType() << std::endl;
         else
-            std::cout << "slot[" << i << "] = [Empty]" << std::endl;
+        std::cout << "Slot[" << i << "] = [Empty]" << std::endl;
     }
+    std::cout << "===================================" << std::endl;
 }
 
-void    foo() {
-    system("leaks -q interface");
-}
-
-// int main() {
-//     atexit(foo);
-//     AMateria* iceMateria;
-//     AMateria* cureMateria;
-
-//     iceMateria = new Ice();
-//     cureMateria = new Cure();
-//     std::cout << "type: " + iceMateria->getType() << std::endl;
-//     std::cout << "type: " + cureMateria->getType() << std::endl;
-//     Character* klock = new Character("klock");
-//     iceMateria->use(*klock);
-//     cureMateria->use(*klock);
-
-//     klock->equip(iceMateria);
-//     klock->equip(cureMateria);
-//     klock->equip(iceMateria);
-//     klock->equip(cureMateria);
-//     klock->unequip(1);
-//     klock->equip(cureMateria);
-
-//     Character* glock = new Character(*klock);
-//     glock->unequip(1);
-//     showInventory(*glock);
-//     Character* block = new Character(*glock);
-//     showInventory(*block);
-
-//     Character assign;
-//     assign = *block;
-//     assign.unequip(2);
-//     std::cout << "assign" << std::endl;
-//     showInventory(assign);
-//     std::cout << "block" << std::endl;
-//     showInventory(*block);
-    
-//     delete iceMateria;
-//     delete cureMateria;
-//     delete klock;
-//     delete glock;
-//     delete block;
+// void    foo() {
+//     system("leaks -q interface");
 // }
 
 int main()
 {
-    atexit(foo);
+    // atexit(foo);
     IMateriaSource* src = new MateriaSource();
     AMateria* ice = new Ice();
     AMateria* cure = new Cure();
+
     src->learnMateria(ice);
     src->learnMateria(cure);
-    ICharacter* me = new Character("me");
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    delete tmp;
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
+    Character* me = new Character("me");
+
+    AMateria* learnedIce = src->createMateria("ice");
+    AMateria* learnedCure = src->createMateria("cure");
+    showInventory(*me);
+    me->equip(learnedIce);
+    me->equip(learnedIce);
+    me->equip(learnedCure);
+    me->equip(learnedIce);
+    showInventory(*me);
+    me->unequip(1);
+    me->equip(learnedCure);
+    me->unequip(2);
+    showInventory(*me);
     ICharacter* bob = new Character("bob");
+
     me->use(0, *bob);
     me->use(1, *bob);
+
+    me->unequip(3);
+    me->unequip(0);
+    showInventory(*me);
+
     delete bob;
     delete me;
     delete src;

@@ -17,6 +17,8 @@ class MateriaSource: public IMateriaSource {
 		void		learnMateria(AMateria* materia);
 		AMateria*	createMateria(String const& type);
 
+		AMateria*	getMateria(int idx) const;
+
 		~MateriaSource();
 };
 

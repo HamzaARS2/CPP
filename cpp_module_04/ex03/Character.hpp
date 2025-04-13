@@ -4,9 +4,10 @@
 #include "ICharacter.hpp"
 
 class Character: public ICharacter {
-    private:
+    public:
         String name;
         AMateria* materias[4];
+        AMateria* droppedMaterias[50];
     
     public:
         Character();

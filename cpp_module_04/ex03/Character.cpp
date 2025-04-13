@@ -3,40 +3,46 @@
 #include "Cure.hpp"
 
 Character::Character() {
-    std::cout << "Character constructor called" << std::endl;
     this->name = "Unnamed";
     for (int i = 0; i < 4; i++)
-        this->materias[i] = nullptr;
+        this->materias[i] = NULL;
+    for (int k = 0; k < 50; k++)
+        this->droppedMaterias[k] = NULL;
+    std::cout << "Character ["+ this->name +"] created!" << std::endl;
 }
 
 Character::Character(String name) {
     this->name = name;
     for (int i = 0; i < 4; i++)
-        this->materias[i] = nullptr;
+        this->materias[i] = NULL;
+    for (int k = 0; k < 50; k++)
+        this->droppedMaterias[k] = NULL;
+    std::cout << "Character ["+ this->name +"] created!" << std::endl;
 }
 
 Character::Character(const Character& copy) {
-    std::cout << "Character copy constructor called" << std::endl;
     this->name = copy.name;
     
     for (int i = 0; i < 4; i++)
-        this->materias[i] = nullptr;
+        this->materias[i] = NULL;
+    for (int k = 0; k < 50; k++)
+        this->droppedMaterias[k] = NULL;
 
     for (int k = 0; k < 4 ; k++) {
         if (copy.materias[k])
             this->materias[k] = copy.materias[k]->clone();
     }
+    std::cout << "Character ["+ this->name +"] created!" << std::endl;
 }
 
 Character&  Character::operator=(const Character& other) {
-    std::cout << "Character assignment operator called" << std::endl;
     if (this == &other)
         return *this;
     this->name = other.name;
 
     for (int i = 0; i < 4; i++) {
         delete this->materias[i];
-        this->materias[i] = nullptr;
+        this->materias[i] = NULL;
     }
     
     for (int k = 0; k < 4 ; k++) {
@@ -47,9 +53,12 @@ Character&  Character::operator=(const Character& other) {
 }
 
 void    Character::equip(AMateria* m) {
+    if (!m)
+        return ;
     for (int i = 0; i < 4; i ++) {
         if (this->materias[i] == NULL) {
             this->materias[i] = m->clone();
+            std::cout << this->materias[i]->getType() + "["<< i << "] equiped!" << std::endl;
             return;
         }
     }
@@ -59,10 +68,18 @@ void    Character::equip(AMateria* m) {
 void    Character::unequip(int idx) {
     if (idx < 0 || idx > 3)
         return;
-    if (this->materias[idx] == nullptr)
+    if (this->materias[idx] == NULL)
         return;
-    // TODO: handle how you will save the unequiped materias!
-    delete this->materias[idx];
+
+    std::cout << this->materias[idx]->getType() + "[" << idx << "] unequiped!" << std::endl;
+    for (int k = 0; k < 50; k++) {
+        if (this->droppedMaterias[k] == NULL) {
+            this->droppedMaterias[k] = this->materias[idx];
+            break;
+        }
+        else if (k == 49)
+            delete this->materias[idx];
+    }
     this->materias[idx] = NULL;
 }
 
@@ -85,8 +102,9 @@ AMateria* Character::getMateria(int idx) const {
 }
 
 Character::~Character() {
-    std::cout << "Character destructor called" << std::endl;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
         delete this->materias[i];
-    }
+    for (int k = 0; k < 50; k++)
+        delete this->droppedMaterias[k];
+    std::cout << "Character ["+ this->name +"] destroyed!" << std::endl;
 }

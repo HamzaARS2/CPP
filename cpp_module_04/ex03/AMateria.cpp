@@ -12,5 +12,4 @@ void    AMateria::use(ICharacter& target) {
 }
 
 AMateria::~AMateria() {
-    std::cout << "AMateria destructor called" << std::endl;    
 }

@@ -1,15 +1,13 @@
 #include "MateriaSource.hpp"
 
 MateriaSource::MateriaSource() {
-	std::cout << "MateriaSource constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		this->learnedMaterias[i] = nullptr;
+		this->learnedMaterias[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& copy) {
-	std::cout << "MateriaSource copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		this->learnedMaterias[i] = nullptr;
+		this->learnedMaterias[i] = NULL;
 	
 	for (int k = 0; k < 4; k++) {
 		if (copy.learnedMaterias[k])
@@ -18,13 +16,12 @@ MateriaSource::MateriaSource(const MateriaSource& copy) {
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& other) {
-	std::cout << "MateriaSource assignment operator called" << std::endl;
 	if (this == &other)
 		return *this;
 	
 	for (int i = 0; i < 4; i++) {
 		delete this->learnedMaterias[i];
-		this->learnedMaterias[i] = nullptr;
+		this->learnedMaterias[i] = NULL;
 	}
 	for (int k = 0; k < 4; k++) {
 		if (other.learnedMaterias[k])
@@ -50,9 +47,14 @@ AMateria*	MateriaSource::createMateria(String const& type) {
 	return NULL;
 }
 
+AMateria*	MateriaSource::getMateria(int idx) const {
+	if (idx < 0 || idx > 3)
+		return NULL;
+	return this->learnedMaterias[idx];
+}
+
 
 MateriaSource::~MateriaSource() {
-	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int k = 0; k < 4; k++)
 		delete this->learnedMaterias[k];
 }
