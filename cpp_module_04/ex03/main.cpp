@@ -15,13 +15,8 @@ void    showInventory(ICharacter& character) {
     std::cout << "===================================" << std::endl;
 }
 
-// void    foo() {
-//     system("leaks -q interface");
-// }
-
 int main()
 {
-    // atexit(foo);
     IMateriaSource* src = new MateriaSource();
     AMateria* ice = new Ice();
     AMateria* cure = new Cure();
