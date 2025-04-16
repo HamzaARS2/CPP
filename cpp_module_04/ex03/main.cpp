@@ -3,7 +3,7 @@
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 
-void    showInventory(ICharacter& character) {
+void    showInventory(Character& character) {
     std::cout << "========= ["+ character.getName() + "] Inventory ===========" << std::endl;
     for (int i = 0; i < 4; i++) {
         AMateria* materia = character.getMateria(i);
