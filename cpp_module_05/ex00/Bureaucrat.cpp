@@ -2,14 +2,12 @@
 
 
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {
-	String msg = "The Grade is higher than 150!";
-	return msg.c_str();
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {	
+	return "The grade is too high!";
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	String msg = "The Grade is lower than 1!";
-	return msg.c_str();
+	return "The grade is too low!";
 }
 
 Bureaucrat::Bureaucrat(): name("Unnamed") {
@@ -22,9 +20,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy): name(copy.name) {
 
 Bureaucrat::Bureaucrat(String name, int grade): name(name) {
 	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	this->grade = grade;
 }
 
@@ -36,19 +34,17 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 void	Bureaucrat::incrementGrade() {
-	this->grade--;
-	if (this->grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	if (this->grade > 150)
+	int newGrade = this->grade - 1;
+	if (newGrade < 1)
 		throw Bureaucrat::GradeTooHighException();
+	this->grade = newGrade;
 }
 
 void	Bureaucrat::decrementGrade() {
-	this->grade++;
-	if (this->grade < 1)
+	int newGrade = this->grade + 1;
+	if (newGrade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	if (this->grade > 150)
-		throw Bureaucrat::GradeTooHighException();
+	this->grade = newGrade;
 }
 
 String	Bureaucrat::getName() const {
