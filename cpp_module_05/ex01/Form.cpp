@@ -1,11 +1,11 @@
 #include "Form.hpp"
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {	
+const char*	Form::GradeTooHighException::what() const throw() {	
 	return "The grade is too high!";
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	return "The grade is too low to sign this form";
+const char*	Form::GradeTooLowException::what() const throw() {
+	return "The grade is too low to sign/execute this form";
 }
 
 Form::Form()
@@ -13,7 +13,7 @@ Form::Form()
 		this->isSigned = false;
 }
 
-Form::Form(Form& const copy)
+Form::Form(const Form& copy)
 	: name(copy.name), gradeToSign(copy.gradeToSign), gradeToExecute(copy.gradeToExecute) {
 		this->isSigned = copy.isSigned;
 }
@@ -21,9 +21,13 @@ Form::Form(Form& const copy)
 Form::Form(String name, int gradeToSign, int gradeToExecute)
 	: name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
 		this->isSigned = false;
+		if (gradeToSign < 1 || gradeToExecute < 1)
+			throw Form::GradeTooHighException();
+		if (gradeToSign > 150 || gradeToExecute > 150)
+			throw Form::GradeTooLowException();
 }
 
-Form&	Form::operator=(Form& const other) {
+Form&	Form::operator=(const Form& other) {
 	if (this == &other)
 		return *this;
 	this->isSigned = other.isSigned;

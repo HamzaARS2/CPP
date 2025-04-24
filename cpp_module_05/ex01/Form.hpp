@@ -20,10 +20,10 @@ class Form {
 				const char* what() const throw();
 		};
 		Form();
-		Form(Form& const copy);
+		Form(const Form& copy);
 		Form(String name, int gradeToSign, int gradeToExecute);
 
-		Form&	operator=(Form& const other);
+		Form&	operator=(const Form& other);
 
 		void	beSigned(Bureaucrat& bureaucrat);
 
@@ -35,7 +35,7 @@ class Form {
 		~Form();
 };
 
-std::ostream&	operator<<(std::ostream& out, Form& const form);
+std::ostream&	operator<<(std::ostream& out, const Form& form);
 
 
 #endif

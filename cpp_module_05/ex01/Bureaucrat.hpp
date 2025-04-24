@@ -4,8 +4,8 @@
 #include <iostream>
 #include <exception>
 
+class Form;
 typedef std::string String;
-
 class Bureaucrat {
 
 	private:
