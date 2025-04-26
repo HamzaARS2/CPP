@@ -6,7 +6,7 @@
 int	main() {
 	srand(time(0));
 	PresidentialPardonForm form;
-	Bureaucrat crat("Fennec", 4);
+	Bureaucrat crat("Fennec", 5);
 	form.beSigned(crat);
-	form.execute(crat);
+	crat.executeForm(form);
 }

@@ -48,6 +48,7 @@ void	AForm::beSigned(Bureaucrat& bureaucrat) {
 void	AForm::execute(Bureaucrat const& executor) const {
 	if (!this->isSigned)
 		throw FormNotSignedExecption();
+	std:: cout << "gradeToExecute: " << this->gradeToExecute << " | " << "executor: " << executor.getGrade() << std::endl;
 	if (this->gradeToExecute < executor.getGrade())
 		throw GradeTooLowException();
 	action();

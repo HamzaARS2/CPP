@@ -1,6 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() {
+PresidentialPardonForm::PresidentialPardonForm()
+	:AForm("PresidentialPardonForm", 25, 5) {
 	this->target = "Unknown";
 }
 

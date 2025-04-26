@@ -1,6 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() {
+RobotomyRequestForm::RobotomyRequestForm()
+	:AForm("RobotomyRequestForm", 72, 45) {
 	this->target = "Unknown";
 }
 

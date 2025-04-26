@@ -5,7 +5,8 @@ const char*	ShrubberyCreationForm::FileOpenException::what() const throw() {
 	return "The file can't be opened";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm() {
+ShrubberyCreationForm::ShrubberyCreationForm()
+	:AForm("RobotomyRequestForm", 145, 137) {
 	this->target = "Unknown";
 }
 
