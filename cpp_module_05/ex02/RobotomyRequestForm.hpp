@@ -1,7 +1,8 @@
 #ifndef ROBOTOMY_REQUEST_FORM_HPP
 # define ROBOTOMY_REQUEST_FORM_HPP
 
-
+#include <cstdlib>
+#include <ctime>
 #include "AForm.hpp"
 
 class RobotomyRequestForm: public AForm {
@@ -16,7 +17,7 @@ class RobotomyRequestForm: public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		
 		// overridden function
-		void	execute(Bureaucrat const& executor) const;
+		void	action() const;
 
 		~RobotomyRequestForm();
 };
