@@ -49,9 +49,9 @@ void	Bureaucrat::decrementGrade() {
 void	Bureaucrat::signForm(AForm& form) {
 	try {
 		form.beSigned(*this);
-		std::cout << this->name + " signed " << form << std::endl;
+		std::cout << *this << " signed " << form << std::endl;
 	} catch (AForm::GradeTooLowException e) {
-		std::cout << this->name + " couldn't sign " << form <<
+		std::cout << *this << " couldn't sign " << form <<
 		" because " << e.what() << std::endl;
 	}
 }
@@ -59,7 +59,7 @@ void	Bureaucrat::signForm(AForm& form) {
 void	Bureaucrat::executeForm(AForm const& form) const {
 	try {
 		form.execute(*this);
-		std::cout << "[" << *this << "] executed " << form << std::endl;
+		std::cout << *this << " executed " << form << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}

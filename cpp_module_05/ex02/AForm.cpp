@@ -42,13 +42,13 @@ AForm&	AForm::operator=(const AForm& other) {
 void	AForm::beSigned(Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > this->gradeToSign)
 		throw AForm::GradeTooLowException();
+	std::cout << *this << " signed successfully!" << std::endl;
 	this->isSigned = true;
 }
 
 void	AForm::execute(Bureaucrat const& executor) const {
 	if (!this->isSigned)
 		throw FormNotSignedExecption();
-	std:: cout << "gradeToExecute: " << this->gradeToExecute << " | " << "executor: " << executor.getGrade() << std::endl;
 	if (this->gradeToExecute < executor.getGrade())
 		throw GradeTooLowException();
 	action();
