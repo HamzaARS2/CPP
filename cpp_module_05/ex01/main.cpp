@@ -20,6 +20,7 @@ int	main() {
 	} catch(std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	std::cout << "========== Signing Forms ===========" << std::endl;
 
 	std::cout << "[ High Grade ]" << std::endl;
