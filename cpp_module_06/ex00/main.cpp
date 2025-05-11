@@ -7,8 +7,6 @@ int	main(int ac, char **av) {
 	}
 	(void)av;
 
-	float f = 2;
-	printf("%f\n", f);
 	
 	ScalarConverter::convert(av[1]);
 	

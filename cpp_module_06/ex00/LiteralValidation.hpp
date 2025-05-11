@@ -26,6 +26,8 @@ class LiteralValidation {
 		bool	isFloat();
 		bool	isInteger();
 
+		double	getDigitalForm() const;
+		bool	isPseudoLiteral() const;
 		String	castToChar();
 		String	castToInt();
 		String	castToDouble();

@@ -1,4 +1,6 @@
 #include "LiteralValidation.hpp"
+#include <sstream>
+#include <iomanip>
 
 LiteralValidation::LiteralValidation() {
 	
@@ -63,8 +65,10 @@ String	LiteralValidation::validate() {
 	if (literal == "nan" || literal == "-inf" || literal == "+inf" ||
 		literal == "nanf" || literal == "-inff" || literal == "+inff")
 		return saveType(literal);
-	if (length == 1 && std::isalpha(literal.at(0)))
+	if (literal.size() == 1 && !std::isdigit(literal.at(0))) {
+		this->digitalForm = static_cast<double>(literal.at(0));
 		return saveType("c");
+	}
 	if (isInteger())
 		return saveType("i");
 	if (isDouble())
@@ -74,18 +78,14 @@ String	LiteralValidation::validate() {
 	return saveType("invalid");
 }
 
-String	LiteralValidation::castToChar() {
-	if (this->type == "c")
-		return literal;
-	if (this->type == "i" || this->type == "d" || this->type == "f") {
-		if (std::isprint((int)digitalForm))
-			return ;
-		else
-			return "Not displayable";
-	}
-	return "Impossible";
+bool	LiteralValidation::isPseudoLiteral() const {
+	return literal == "nan" || literal == "-inf" || literal == "+inf" ||
+		literal == "nanf" || literal == "-inff" || literal == "+inff";
 }
 
+double	LiteralValidation::getDigitalForm() const {
+	return this->digitalForm;
+}
 
 String	LiteralValidation::saveType(String type) {
 	this->type = type;
