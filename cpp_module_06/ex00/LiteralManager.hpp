@@ -5,7 +5,7 @@
 #include <iostream>
 typedef std::string String;
 
-class LiteralValidation {
+class LiteralManager {
 	private:
 		String literal;
 		double digitalForm;
@@ -13,27 +13,26 @@ class LiteralValidation {
 		unsigned long lastIndex;
 		String type;
 
-		LiteralValidation();
+		LiteralManager();
 		String	saveType(String type);
 	public:
-		LiteralValidation(const LiteralValidation& copy);
-		LiteralValidation(String literal);
+		LiteralManager(const LiteralManager& copy);
+		LiteralManager(String literal);
 
-		LiteralValidation& operator=(const LiteralValidation& other);
+		LiteralManager& operator=(const LiteralManager& other);
 
 		String	validate();
 		bool	isDouble();
 		bool	isFloat();
 		bool	isInteger();
 
+		void	printInfo(double digitalForm, char c, int i, float f, double d);
+		void	printPseudoLiterals(String type);
+
 		double	getDigitalForm() const;
 		bool	isPseudoLiteral() const;
-		String	castToChar();
-		String	castToInt();
-		String	castToDouble();
-		String	castToFloat();
 		
-		~LiteralValidation();
+		~LiteralManager();
 };
 
 #endif

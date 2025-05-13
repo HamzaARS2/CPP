@@ -1,7 +1,7 @@
 #ifndef SCALAR_CONVERTER_HPP
 # define SCALAR_CONVERTER_HPP
 
-#include "LiteralValidation.hpp"
+#include "LiteralManager.hpp"
 
 class ScalarConverter {
 	private:

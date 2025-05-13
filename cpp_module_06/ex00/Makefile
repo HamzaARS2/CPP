@@ -2,7 +2,7 @@ CC := c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SOURCES := main.cpp ScalarConverter.cpp LiteralValidation.cpp
+SOURCES := main.cpp ScalarConverter.cpp LiteralManager.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME := caster
 
