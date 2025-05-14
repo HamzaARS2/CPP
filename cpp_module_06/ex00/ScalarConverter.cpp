@@ -3,9 +3,7 @@
 #include <iomanip>
 
 ScalarConverter::ScalarConverter() {}
-ScalarConverter::ScalarConverter(const ScalarConverter& copy) {
-	(void)copy;
-}
+ScalarConverter::ScalarConverter(const ScalarConverter& copy) { *this = copy; }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 	(void)other;
