@@ -2,7 +2,7 @@ CC := c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SOURCES := main.cpp
+SOURCES := main.cpp Student.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME := iter
 

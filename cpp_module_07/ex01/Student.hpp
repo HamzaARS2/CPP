@@ -1,23 +1,25 @@
-#ifndef USER_HPP
-# define USER_HPP
+#ifndef STUDENT_HPP
+# define STUDENT_HPP
 
 #include <iostream>
 typedef std::string String;
 
-class User {
+class Student {
 	private:
 		String name;
 		float grade;
 		bool isPassed;
 	
 	public:
-		User(String name, float grade);
+		Student(String name, float grade);
 		void	setIsPassed(bool passed);
 
 		String getName() const;
 		float getGrade() const;
 		bool	getIsPassed() const;
-		~User();
+		~Student();
 };
+
+std::ostream& operator<<(std::ostream& os, const Student& student);
 
 #endif

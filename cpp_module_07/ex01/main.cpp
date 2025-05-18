@@ -1,6 +1,6 @@
 #include "iter.hpp"
 #include <cmath>
-#include "User.hpp"
+#include "Student.hpp"
 
 void	toUpperCase(String& str) {
 	for (size_t i = 0; i < str.length(); i++)
@@ -15,14 +15,14 @@ void	squareInt(int& n) {
 	n *= n;
 }
 
+void	checkStudentPassed(Student& student) {
+	int gradeToPass = 10;
+	student.setIsPassed(student.getGrade() >= gradeToPass);
+}
 
 
 int	main() {
-	// Empty array of strings
-	String strings2[0];
-	iter(strings2, 0 ,toUpperCase);
-	printAny(strings2, 0);
-
+	// Array of strings
 	String strings[] = {"Fennec", "Octane", "Merc"};
 	iter(strings,3 ,toUpperCase);
 	printAny(strings, 3);
@@ -36,6 +36,9 @@ int	main() {
 	int numbers[] = {1, 2, 3, 4, 5};
 	iter<int, void (int&)>(numbers, 5, squareInt);
 	printAny(numbers, 5);
-	User users[] = {User("Klock", 10), User("Lorem", 19), User("Merol", 7)};
 
+	// Array of Students
+	Student students[] = {Student("Klock", 10), Student("Lorem", 19), Student("Merol", 7)};
+	iter(students, 3, checkStudentPassed);
+	printAny(students, 3);
 }
