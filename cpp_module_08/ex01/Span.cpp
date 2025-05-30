@@ -68,15 +68,7 @@ int	Span::longestSpan() {
 	return longestSpan;
 }
 
-void	Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end) {
-	size_t spaceLeft = N - vect.size();
-	size_t elemToAdd = std::distance(begin, end);
-	
-	if (elemToAdd > spaceLeft)
-		end = begin + spaceLeft;
-	vect.insert(vect.end(), begin, end);
-	// std::cout << "Added: " << spaceLeft << std::endl;
-}
+
 
 void	Span::printAll() const {
 	std::vector<int>::const_iterator it;

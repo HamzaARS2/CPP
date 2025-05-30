@@ -33,7 +33,16 @@ class Span {
 		void	addNumber(int number);
 		int		shortestSpan();
 		int		longestSpan();
-		void	addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+
+		template <typename I>
+		void	addRange(I begin, I end) {
+			size_t spaceLeft = N - vect.size();
+			size_t elemToAdd = std::distance(begin, end);
+	
+			if (elemToAdd > spaceLeft)
+				end = begin + spaceLeft;
+			vect.insert(vect.end(), begin, end);
+		}
 		void	printAll() const;
 
 		~Span();
