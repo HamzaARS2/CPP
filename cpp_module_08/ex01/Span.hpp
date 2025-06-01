@@ -35,18 +35,24 @@ class Span {
 		int		longestSpan();
 
 		template <typename I>
-		void	addRange(I begin, I end) {
-			size_t spaceLeft = N - vect.size();
-			size_t elemToAdd = std::distance(begin, end);
-	
-			if (elemToAdd > spaceLeft)
-				end = begin + spaceLeft;
-			vect.insert(vect.end(), begin, end);
-		}
+		void	addRange(I begin, I end);
 		void	printAll() const;
 
 		~Span();
 };
 
+
+template <typename I>
+void	Span::addRange(I begin, I end) {
+	size_t spaceLeft = N - vect.size();
+	size_t elemToAdd = std::distance(begin, end);
+	
+	if (elemToAdd > spaceLeft) {
+		I newEnd = begin;
+		std::advance(newEnd, spaceLeft);
+		end = newEnd;
+	}
+	vect.insert(vect.end(), begin, end);
+}
 
 #endif

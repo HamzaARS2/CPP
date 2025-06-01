@@ -1,5 +1,7 @@
 #include "Span.hpp"
 #include <list>
+#include <deque>
+
 int	main() {
 
 	std::cout << "========= Simple test =========" << std::endl;
@@ -17,7 +19,7 @@ int	main() {
 	sp.printAll();
 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-	std::cout << "========= Adding an empty range test =========" << std::endl;
+	std::cout << "========= Adding an empty list range test =========" << std::endl;
 	Span sp0 = Span(10);
 	std::list<int> empty;
 	sp0.addRange(empty.begin(), empty.end());
@@ -28,9 +30,9 @@ int	main() {
 	} catch (Span::NoSpanFoundException& e) {
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << "========= Adding a range to a smaller span test =========" << std::endl;
+	std::cout << "========= Adding a deque range to a smaller span test =========" << std::endl;
 	Span sp1 = Span(3);
-	std::vector<int> source1;
+	std::deque<int> source1;
 	source1.push_back(1);
 	source1.push_back(2);
 	source1.push_back(3);
