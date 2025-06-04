@@ -5,10 +5,10 @@ MutantStack<T>::MutantStack() {
 	
 }
 
-template <typename T>
-MutantStack<T>::MutantStack(const MutantStack& copy) {
-	*this = copy;
-}
+// template <typename T>
+// MutantStack<T>::MutantStack(const MutantStack& copy) {
+// 	*this = copy;
+// }
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::begin() {
@@ -17,7 +17,7 @@ typename MutantStack<T>::iterator	MutantStack<T>::begin() {
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::end() {
-	return iterator(&this->c[2]);
+	return iterator(&this->c[this->size()]);
 }
 
 template <typename T>

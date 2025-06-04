@@ -12,19 +12,13 @@ class MutantStack: public std::stack<T> {
 	public:
 		class iterator;
 		MutantStack();
-		MutantStack(const MutantStack& copy);
+		// MutantStack(const MutantStack& copy);
 		iterator	begin();
 		iterator	end();
 		~MutantStack();
 };
 
-template <typename T>
-class MutantStack<T>::iterator {
-	public:
-		T* ptr;
-		iterator(T* ptr);
 
-};
 
 #include "iterator.tpp"
 
