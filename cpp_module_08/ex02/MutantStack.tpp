@@ -11,22 +11,51 @@ MutantStack<T>::MutantStack(const MutantStack<T>& copy) {
 
 template <typename T>
 MutantStack<T>&	MutantStack<T>::operator=(const MutantStack<T>& other) {
-	std::cout << "copy assignment" << std::endl;
 	if (this == &other)
 		return *this;
-	std::stack<T, std::vector<T> >::operator=(other);
+	std::stack<T>::operator=(other);
 	return *this;
 }
 
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::begin() {
-	return iterator(&this->c[0]);
+	return this->c.begin();
 }
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::end() {
-	return iterator(&this->c[this->size()]);
+	return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::begin() const {
+	return this->c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const {
+	return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator	MutantStack<T>::rbegin() {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator	MutantStack<T>::rend() {
+	return this->c.rend();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::rbegin() const {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::rend() const {
+	return this->c.rend();
 }
 
 template <typename T>
