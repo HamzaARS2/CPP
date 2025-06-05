@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stack>
-#include <deque>
+#include <vector>
 typedef std::string String;
 
 
@@ -12,7 +12,10 @@ class MutantStack: public std::stack<T> {
 	public:
 		class iterator;
 		MutantStack();
-		// MutantStack(const MutantStack& copy);
+		MutantStack(const MutantStack<T>& copy);
+
+		MutantStack<T>&	operator=(const MutantStack<T>& other);
+
 		iterator	begin();
 		iterator	end();
 		~MutantStack();

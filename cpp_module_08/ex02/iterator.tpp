@@ -1,29 +1,51 @@
 #include "MutantStack.hpp"
-#include <vector>
+
 template <typename T>
 class MutantStack<T>::iterator {
+	private:
+    	T* ptr;
+
 	public:
-		T* ptr;
 		iterator(T* ptr): ptr(ptr) {}
 
-        // operators
-	public:
         // Dereference
-        T&  operator*() {
+        T&  operator*() const {
             return *ptr;
         }
+
         // Pre-increment
-        T&  operator++() {
+        MutantStack<T>::iterator  operator++() {
             ++ptr;
             return *this;
         }
 
         // Post-increment
-        T&  operator++(T) {
+        MutantStack<T>::iterator  operator++(int) {
             MutantStack<T>::iterator it = *this;
             ++ptr;
             return it;
         }
-		
 
+        // Pre-decrement
+        MutantStack<T>::iterator    operator--() {
+            --ptr;
+            return *this;
+        }
+
+        // Post-decrement
+        MutantStack<T>::iterator    operator--(int) {
+            MutantStack<T>::iterator it = *this;
+            --ptr;
+            return *this;
+        }
+
+        // Equality
+        bool    operator==(const MutantStack<T>::iterator& other) {
+            return this->ptr == other.ptr;
+        }
+
+        // Non-equality
+        bool    operator!=(const MutantStack<T>::iterator& other) {
+            return this->ptr != other.ptr;
+        }
 };
