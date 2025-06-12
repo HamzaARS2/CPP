@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cmath>
 #include <limits.h>
+#include <numeric>
 typedef std::string String;
 
 class Span {
@@ -33,6 +34,7 @@ class Span {
 		void	addNumber(int number);
 		int		shortestSpan();
 		int		longestSpan();
+		size_t	getSize() const;
 
 		template <typename I>
 		void	addRange(I begin, I end);

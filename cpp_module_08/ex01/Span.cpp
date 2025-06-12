@@ -35,40 +35,34 @@ void	Span::addNumber(int number) {
 }
 
 int	Span::shortestSpan() {
-	int	shortestSpan = INT_MAX;
-	std::vector<int>::const_iterator it;
+	std::vector<int> diffResult;
+	std::vector<int>::iterator it;
 
 	if (vect.size() <= 1)
 		throw NoSpanFoundException();
+	std::adjacent_difference(vect.begin(), vect.end(), std::back_inserter(diffResult));
+	for (it = diffResult.begin(); it != diffResult.end(); it++)
+		*it = std::abs(*it);
 
-	for (it = vect.begin(); it != (vect.end() - 1); it++) {
-		int current = *it;		
-		int next = *(it + 1);
-		int span = std::abs(current - next);
-		if (span < shortestSpan) 
-			shortestSpan = span;
-	}
-	return shortestSpan;
+	return *std::min_element(diffResult.begin() + 1, diffResult.end());
 }
 
 int	Span::longestSpan() {
-	int	longestSpan = INT_MIN;
-	std::vector<int>::const_iterator it;
+	std::vector<int> diffResult;
+	std::vector<int>::iterator it;
 
 	if (vect.size() <= 1)
 		throw NoSpanFoundException();
+	std::adjacent_difference(vect.begin(), vect.end(), std::back_inserter(diffResult));
+	for (it = diffResult.begin(); it != diffResult.end(); it++)
+		*it = std::abs(*it);
 
-	for (it = vect.begin(); it != (vect.end() - 1); it++) {
-		int current = *it;
-		int next = *(it + 1);
-		int span = std::abs(current - next);
-		if (span > longestSpan)
-			longestSpan = span;
-	}
-	return longestSpan;
+	return *std::max_element(diffResult.begin() + 1, diffResult.end());
 }
 
-
+size_t	Span::getSize() const {
+	return vect.size();
+}
 
 void	Span::printAll() const {
 	std::vector<int>::const_iterator it;

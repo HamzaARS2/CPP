@@ -3,7 +3,6 @@
 #include <deque>
 
 int	main() {
-
 	std::cout << "========= Simple test =========" << std::endl;
 	Span sp = Span(5);
 	sp.addNumber(6);
@@ -17,6 +16,7 @@ int	main() {
 		std::cout << e.what() << std::endl;
 	}
 	sp.printAll();
+	std::cout << "Span size: " << sp.getSize() << std::endl;
 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	std::cout << "========= Adding an empty list range test =========" << std::endl;
@@ -40,6 +40,7 @@ int	main() {
 	source1.push_back(5);
 	sp1.addRange(source1.begin(), source1.end());
 	sp1.printAll();
+	std::cout << "Span size: " << sp1.getSize() << std::endl;
 	std::cout << "Shortest span: " << sp1.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << sp1.longestSpan() << std::endl;
 
@@ -48,6 +49,7 @@ int	main() {
 	std::vector<int> source2(10000, 42);
 	sp2.addRange(source2.begin(), source2.end());
 	// sp2.printAll();
+	std::cout << "Span size: " << sp2.getSize() << std::endl;
 	std::cout << "Shortest span: " << sp2.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << sp2.longestSpan() << std::endl;
 	try {
@@ -60,6 +62,7 @@ int	main() {
 	std::vector<int> source3(100000, 1337);
 	sp3.addRange(source3.begin(), source3.end());
 	// sp3.printAll();
+	std::cout << "Span size: " << sp3.getSize() << std::endl;
 	std::cout << "Shortest span: " << sp3.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << sp3.longestSpan() << std::endl;
 }
