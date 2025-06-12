@@ -22,7 +22,6 @@ void	showStackFromBot(MutantStack<T> stack) {
 int main() {
     MutantStack<int> mstack;
 
-    // Basic stack operations
     std::cout << "=== Basic Stack Operations ===" << std::endl;
     mstack.push(42);
     mstack.push(17);
@@ -32,17 +31,14 @@ int main() {
     std::cout << "Top after pop: " << mstack.top() << std::endl;
     std::cout << "Size: " << mstack.size() << std::endl;
 
-    // Iteration bottom to top
     std::cout << "\n=== Iterator (Bottom to Top) ===" << std::endl;
     mstack.push(5);
     mstack.push(99);
     showStackFromBot(mstack);
 
-    // Iteration top to bottom
     std::cout << "\n=== Reverse Iterator (Top to Bottom) ===" << std::endl;
     showStackFromTop(mstack);
 
-    // Copy construction and assignment
     std::cout << "\n=== Copy Constructor & Assignment ===" << std::endl;
     MutantStack<int> mstack2(mstack);
     showStackFromTop(mstack2);
@@ -50,12 +46,10 @@ int main() {
     mstack3 = mstack2;
     showStackFromBot(mstack3);
 
-    // Compatibility with std::stack
     std::cout << "\n=== Compatibility with std::stack ===" << std::endl;
     std::stack<int> s(mstack);
     std::cout << "std::stack top after copy: " << s.top() << std::endl;
 
-    // Empty stack
     std::cout << "\n=== Empty Stack ===" << std::endl;
     MutantStack<int> emptyStack;
     showStackFromBot(emptyStack);
