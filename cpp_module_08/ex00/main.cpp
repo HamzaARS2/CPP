@@ -1,9 +1,7 @@
 #include <iostream>
-#include <array>
 #include <vector>
 #include <list>
 #include <deque>
-#include <queue>
 #include <algorithm>
 #include "easyfind.hpp"
 
