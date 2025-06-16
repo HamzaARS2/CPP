@@ -15,11 +15,12 @@ class MapBitcoinDB {
         std::pair<String, float>    splitEntry(const String& entry) const;
 
     public:
+        MapBitcoinDB();
         MapBitcoinDB(const String& dbName);
         
         void    initDatabase();
-        // overidden methods
-        bool    getValue(const String& date, float* value);
+        // overidden method
+        bool    getValue(String date, float* value);
 
         ~MapBitcoinDB();
 };

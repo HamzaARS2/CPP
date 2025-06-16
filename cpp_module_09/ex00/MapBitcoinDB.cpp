@@ -2,6 +2,7 @@
 #include <exception>
 #include <algorithm>
 
+MapBitcoinDB::MapBitcoinDB(): dbName("unnamed") {}
 MapBitcoinDB::MapBitcoinDB(const String& dbName): dbName(dbName) {}
 
 
@@ -22,12 +23,16 @@ void    MapBitcoinDB::initDatabase() {
 }
 
 
-bool    MapBitcoinDB::getValue(const String& date, float* value) {
+bool    MapBitcoinDB::getValue(String date, float* value) {
     std::map<String, float>::iterator it;
+
+    if (dbMap.empty())
+        return false;
     it = dbMap.lower_bound(date);
-    if ((*it).first != date)
+    if (it == dbMap.begin() && (*it).first != date)
+        return false;
+    if (it == dbMap.end() || (*it).first != date)
         it--;
-    std::cout << "key: " + (*it).first + " | value: " << (*it).second << std::endl;
     *value = (*it).second;
     return true;
 }
