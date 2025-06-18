@@ -9,6 +9,7 @@ class BitcoinExchange {
 		const String filepath;
 		MapBitcoinDB db;
 
+		
 	public:
 		BitcoinExchange();
 		BitcoinExchange(const String& filepath, MapBitcoinDB& db);
@@ -17,6 +18,7 @@ class BitcoinExchange {
 		BitcoinExchange&	operator=(const BitcoinExchange& other);
 
 		void	computeExchange();
+
 
 		~BitcoinExchange();
 };

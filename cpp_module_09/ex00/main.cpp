@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+
 #include <vector>
 #include <algorithm>
 int main() {

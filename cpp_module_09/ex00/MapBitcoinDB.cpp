@@ -11,7 +11,7 @@ void    MapBitcoinDB::initDatabase() {
     String entry; 
     std::ifstream inStream;
 
-    inStream.open(dbName);
+    inStream.open(dbName.c_str());
      if (!inStream.is_open())
         throw std::runtime_error("Error: database can't be opened.");
     std::getline(inStream, entry);

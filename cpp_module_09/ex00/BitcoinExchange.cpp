@@ -1,5 +1,5 @@
 #include "BitcoinExchange.hpp"
-
+#include <cstdlib>
 BitcoinExchange::BitcoinExchange(): filepath("unset") {
 	// this->db = MapBitcoinDB("data.csv");
 }
@@ -22,7 +22,7 @@ std::pair<String, float>    splitEntry(const String& entry) {
     size_t pos = entry.find('|');
 
     entryPair.first = entry.substr(0, pos);
-    entryPair.second = std::atof(entry.substr(pos + 1).c_str());
+    entryPair.second = atof(entry.substr(pos + 1).c_str());
     
     return entryPair;
 }
@@ -31,7 +31,7 @@ void	BitcoinExchange::computeExchange()  {
 	String entry;
 	std::ifstream in;
 
-	in.open(filepath);
+	in.open(filepath.c_str());
 	if (!in.is_open())
 		throw std::runtime_error("Error: input file can't be opened.");
 	std::getline(in, entry);
