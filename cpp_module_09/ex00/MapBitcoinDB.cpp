@@ -23,8 +23,8 @@ void    MapBitcoinDB::initDatabase() {
 }
 
 
-bool    MapBitcoinDB::getValue(String date, float* value) {
-    std::map<String, float>::iterator it;
+bool    MapBitcoinDB::getValue(String date, float* value) const {
+    std::map<String, float>::const_iterator it;
 
     if (dbMap.empty())
         return false;

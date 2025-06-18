@@ -20,7 +20,7 @@ class MapBitcoinDB {
         
         void    initDatabase();
         // overidden method
-        bool    getValue(String date, float* value);
+        bool    getValue(String date, float* value) const;
 
         ~MapBitcoinDB();
 };
