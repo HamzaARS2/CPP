@@ -33,9 +33,21 @@ bool	BitcoinExchange::isValidEntry(const String& entry) const {
 	return true;
 }
 
-// bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
-// 	entry.
-// }
+bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
+	size_t pos = entry.find('|');
+	String format = "dddd-dd-dd";
+	String date = entry.substr(0, pos - 1);
+
+	if (date.length() != 10)
+		return false;
+	for (size_t i = 0; i < date.length(); i++) {
+		if (format[i] == 'd' && !std::isdigit(date[i]))
+			return false;
+		if (format[i] == '-' && date[i] != '-')
+			return false;
+	}
+	return true;
+}
 
 void	BitcoinExchange::reportError(const String& msg, const String& entry) const {
 	std::cerr << "Error: " + msg;
@@ -76,6 +88,10 @@ void	BitcoinExchange::displayExchange(const String& date, float value, float dbV
 void	BitcoinExchange::processLine(const String& entry) const {
 	if (!isValidEntry(entry)) {
 		reportError("bad input", entry);
+		return;
+	}
+	if (!isValidDateFormat(entry)) {
+		reportError("bad date format", entry);
 		return;
 	}
 	std::pair<String, float> entryPair;
