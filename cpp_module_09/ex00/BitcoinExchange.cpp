@@ -24,12 +24,18 @@ bool	BitcoinExchange::isValidEntry(const String& entry) const {
 	if (delimiterCount == 0 || delimiterCount > 1)
 		return false;
 	size_t pos = entry.find('|');
+	if (entry[pos - 1] != 32 || entry[pos + 1] != 32)
+		return false;
 	while (pos < entry.length() && std::isspace(entry[pos + 1]))
 		pos++;
 	if (pos <= 0 || pos >= entry.length() - 1)
 		return false;
 	return true;
 }
+
+// bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
+// 	entry.
+// }
 
 void	BitcoinExchange::reportError(const String& msg, const String& entry) const {
 	std::cerr << "Error: " + msg;

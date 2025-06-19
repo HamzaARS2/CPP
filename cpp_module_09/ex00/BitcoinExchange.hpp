@@ -10,6 +10,7 @@ class BitcoinExchange {
 		const MapBitcoinDB db;
 
 		bool	isValidEntry(const String& entry) const;
+		bool	isValidDateFormat(const String& entry) const;
     	bool	parseEntry(const String& entry, std::pair<String, float>* pair) const;
     	void	reportError(const String& msg, const String& entry) const;
     	void	processLine(const String& entry) const;
