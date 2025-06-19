@@ -1,8 +1,8 @@
 #include "BitcoinExchange.hpp"
-#include <cstdlib>
-BitcoinExchange::BitcoinExchange(): filepath("unset") {
-	// this->db = MapBitcoinDB("data.csv");
-}
+
+BitcoinExchange::BitcoinExchange()
+	:filepath("input.txt"), db(MapBitcoinDB()) {
+	}
 
 BitcoinExchange::BitcoinExchange(const String& filepath, MapBitcoinDB& db)
 	:filepath(filepath), db(db) {}
@@ -24,6 +24,8 @@ bool	BitcoinExchange::isValidEntry(const String& entry) const {
 	if (delimiterCount == 0 || delimiterCount > 1)
 		return false;
 	size_t pos = entry.find('|');
+	while (pos < entry.length() && std::isspace(entry[pos + 1]))
+		pos++;
 	if (pos <= 0 || pos >= entry.length() - 1)
 		return false;
 	return true;
@@ -41,10 +43,10 @@ bool	BitcoinExchange::parseEntry(const String& entry, std::pair<String, float>* 
 	char*	end;
 
     pair->first = entry.substr(0, pos);
+	while (std::isspace(entry[pos + 1]))
+		pos++;
     pair->second = std::strtod(entry.substr(pos + 1).c_str(), &end);
-	
 	if (*end != 0) {
-		std::cout << "HERE: " << end[1] << std::endl;
 		reportError("not a number", "");
 		return false;
 	}

@@ -2,7 +2,7 @@
 #include <exception>
 #include <algorithm>
 
-MapBitcoinDB::MapBitcoinDB(): dbName("unnamed") {}
+MapBitcoinDB::MapBitcoinDB(): dbName("data.csv") {}
 MapBitcoinDB::MapBitcoinDB(const String& dbName): dbName(dbName) {}
 
 
