@@ -46,6 +46,12 @@ bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
 		if (format[i] == '-' && date[i] != '-')
 			return false;
 	}
+	int day = std::atoi(date.c_str() + 5);
+	int month = std::atoi(date.c_str() + 8);
+	if (month <= 0 || month > 12)
+		return false;
+	if (day <= 0 || day > 31)
+		return false;
 	return true;
 }
 

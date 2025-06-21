@@ -13,7 +13,7 @@ $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.cpp BitcoinExchange.hpp MapBitcoinDB.hpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@  
 
 clean:
 	rm -rf $(OBJECTS)
