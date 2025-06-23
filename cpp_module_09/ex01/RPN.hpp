@@ -7,18 +7,19 @@
 #include <stack>
 typedef std::string String;
 
-//  "8 9 * 9 - 9 - 9 - 4 - 1 +"
+//  "8 9 * 9 5 - 9 - 9 - 4 - 1 +"
 //  "9 9 2 - -"
 //  "1 2 * 2 / 2 * 2 4 - +"
-//  "2 -2 +"
+//  "1 2 - + 9"
+//  "-1 + 9"
 class RPN {
 	private:
 		String expression;
 		int result;
 		std::stack<int> stack;
 		bool	isSolved;
-		
-		bool	isOperation(char c) const;
+		bool	isValid;
+
 		void	runOperation(char operation);
 	public:
 		RPN();
