@@ -37,6 +37,7 @@ bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
 	size_t pos = entry.find('|');
 	String format = "dddd-dd-dd";
 	String date = entry.substr(0, pos - 1);
+	int months[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (date.length() != 10)
 		return false;
@@ -46,11 +47,11 @@ bool	BitcoinExchange::isValidDateFormat(const String& entry) const {
 		if (format[i] == '-' && date[i] != '-')
 			return false;
 	}
-	int day = std::atoi(date.c_str() + 5);
-	int month = std::atoi(date.c_str() + 8);
+	int month = std::atoi(date.c_str() + 5);
+	int day = std::atoi(date.c_str() + 8);
 	if (month <= 0 || month > 12)
 		return false;
-	if (day <= 0 || day > 31)
+	if (day <= 0 || day > months[month])
 		return false;
 	return true;
 }
