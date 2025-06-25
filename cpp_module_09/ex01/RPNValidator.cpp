@@ -24,33 +24,19 @@ bool	RPNValidator::isValidChars(const String& expression) {
 	return true;
 }
 
-bool	RPNValidator::isValidSequence(const String& expression) {
-	std::stack<char> stack;
-	for (size_t i = 0; i < expression.length(); i++) {
-		if (i % 2 == 1 || expression[i] == 32) continue;
-		if (isDigit(expression[i]))
-			stack.push(expression[i]);
-		else {
-			// operation found;
-			if (stack.size() <= 1)
-				return false; // not enough operands when operation reached.
-			while (!stack.empty())
-				stack.pop();
-		}
-			
-	}
-	return false;
-}
-
 bool	RPNValidator::isBalanced(const String& expression) {
 	int digitsCount = count_if(expression.begin(), expression.end(), isDigit);
 	int operationsCount = count_if(expression.begin(), expression.end(), isOperation);
-	return digitsCount == operationsCount + 1;
+	return (digitsCount == operationsCount + 1) && (digitsCount > 1);
 }
 
 bool	RPNValidator::validate(const String& expression) {
+	if (expression.empty()) {
+		std::cerr << "expression not set" << std::endl;
+		return false;
+	}
 	if (!isValidChars(expression)) {
-		std::cerr << "invalid characters" << std::endl;
+		std::cerr << "invalid expression" << std::endl;
 		return false;
 	}
 	if (!isBalanced(expression)) {

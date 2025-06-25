@@ -30,11 +30,14 @@ void	RPN::setExpression(const String& expression) {
 }
 
 
-void	RPN::runOperation(char operation) {
+bool	RPN::runOperation(char operation) {
+	if (stack.size() <= 1)
+		return false;
 	int o2 = stack.top();
 	stack.pop();
 	int o1 = stack.top();
 	stack.pop();
+
 	switch(operation) {
 		case '+':
 			stack.push(o1 + o2);
@@ -46,32 +49,41 @@ void	RPN::runOperation(char operation) {
 			stack.push(o1 * o2);
 			break;
 		case '/':
-			stack.push(o1 / o2);
+			if (o2 != 0) stack.push(o1 / o2);
+			else return false;
 	}
+	return true;
 }
 
-void	RPN::solve() {
+bool	RPN::solve() {
 	if (expression.empty()) {
 		std::cout << "No expression set!" << std::endl;
-		return ;
+		return false;
 	}
 	for (size_t i = 0; i < expression.length(); i++) {
 		if (expression[i] == 32) continue;
-		if (RPNValidator::isOperation(expression[i]))
-			runOperation(expression[i]);
+		if (RPNValidator::isOperation(expression[i])) {
+			if (!runOperation(expression[i])) {
+				std::cerr << "invalid expression" << std::endl;
+				return false;
+			}
+		}
 		else
 			stack.push(expression[i] - 48);
+	}
+	if (stack.size() != 1) {
+		std::cerr << "invalid expression" << std::endl;
+		return false;
 	}
 	result = stack.top();
 	isSolved = true;
 	stack.pop();
+	return true;
 }
 
 void	RPN::showResult() const {
 	if (isSolved)
 		std::cout << result << std::endl;
-	else
-		std::cout << "Solve the expression!" << std::endl;
 }
 
 RPN::~RPN() {
