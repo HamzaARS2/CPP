@@ -8,9 +8,11 @@ typedef std::string String;
 class ISorter {
 	public:
 		virtual void	buildPairs() = 0;
+		virtual void	sortElements() = 0;
 		virtual void	sortPairs() = 0;
 		virtual void	insert() = 0;
 		virtual	void	sort(std::vector<std::pair<int, int> > v) = 0;
+		
 		// virtual ~ISorter () = 0;
 };
 
