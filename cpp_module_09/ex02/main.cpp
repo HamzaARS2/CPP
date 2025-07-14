@@ -56,9 +56,6 @@ void	comparePairs(std::vector<std::pair<int, int> > pairs, std::vector<int>& win
 	}
 }
 
-
-
-
 int	jacobOf(int n) {
 	if (n == 0 || n == 1)
 		return n;
@@ -66,21 +63,24 @@ int	jacobOf(int n) {
 }
 // 0 1 1 3 5 11
 std::vector<int> getOrderedIndexes(std::vector<int> losers)  {
-	// 3 2 5 4
+	// 14 12 8
+	// 0
 	std::vector<int> indexes;
-	for (size_t n = 3; n <= losers.size(); n++) {
-		int jn = jacobOf(n);
+	for (size_t n = 2; n <= losers.size(); n++) {
+		size_t jn = jacobOf(n);
+		if (jn - 1 >= losers.size())
+			break;
 		indexes.push_back(jn - 1);
 		int prevJ = jacobOf(n - 1);
-		for (int i = jn - 1; i > prevJ; i--)
+		for (int i = jn - 1; i > prevJ ; i--)
 			indexes.push_back(i - 1);
 	}
 	return indexes;
 }
 
 int	binarySearch(std::vector<int> v, int e) {
-	// search 2
-	// 2 7 8 46 53 100
+	// search 5
+	// 2 6 8 9 12 14 17 21
 	int l = 0, r = v.size() - 1;
 	int m;
 	while (l <= r) {
@@ -93,20 +93,37 @@ int	binarySearch(std::vector<int> v, int e) {
 		else 
 			return m;
 	}
-	return m;
+	return l;
 }
 
-void	binaryInsert(std::vector<int>& winners, std::vector<int>& losers) {
+void	binaryInsert(std::vector<int>& winners, std::vector<int>& losers, int unpaired) {
 	if (losers.empty())
 		return;
-	winners.insert(winners.begin(), losers[0]);
+	// winners.insert(winners.begin(), losers[0]);
 	std::vector<int> indexes = getOrderedIndexes(losers);
+	std::cout << "indexes: ";
+	for (size_t i = 0; i < indexes.size(); i++)
+		std::cout << indexes[i] << " ";
+	std::cout << std::endl;
+	std::cout << "losers: ";
+	for (size_t i = 0; i < losers.size(); i++)
+		std::cout << losers[i] << " ";
+	std::cout << std::endl;
+
 	for (size_t i = 0; i < losers.size(); i++) {
-		int curIdx = indexes[i];
-		while(1)
-		;
-		int pos = binarySearch(winners, losers[curIdx]);
-		winners.insert(winners.begin() + pos, losers[curIdx]);
+		int idx = indexes.size() < 3 ? i : indexes[i];
+		if (i < indexes.size())
+			std::cout << "inserting: " << indexes[i] << std::endl;
+		else
+			std::cout << "inserting: out of bounds"  << std::endl;
+
+		int pos = binarySearch(winners, losers[idx]);
+		winners.insert(winners.begin() + pos, losers[idx]);
+	}
+
+	if (unpaired != -1) {
+		int pos = binarySearch(winners, unpaired);
+		winners.insert(winners.begin() + pos, unpaired);
 	}
 }
 
@@ -124,12 +141,18 @@ std::vector<int>	sort(std::vector<int> v) {
 	comparePairs(pairs, winners, losers);
 	printWinLosers(winners, losers, unpaired);
 	winners = sort(winners);
-	binaryInsert(winners, losers);
+	
+	binaryInsert(winners, losers, unpaired);
 
 	return winners;
 }
 
-
+bool isSorted(const std::vector<int>& vec) {
+    for (size_t i = 1; i < vec.size(); ++i)
+        if (vec[i] < vec[i - 1])
+            return false;  
+	return true;  
+}
 
 int	main(int ac, char **av) {
 	if (ac <= 1)
@@ -137,5 +160,7 @@ int	main(int ac, char **av) {
 	std::vector<int> data = getData(++av);
 	// sort(data);
 	std::vector<int> e;
-	printWinLosers(sort(data), e, -1);
+	std::vector<int> sorted = sort(data);
+	printWinLosers(sorted, e, -1);
+	std:: cout << "is sorted: " << isSorted(sorted) << std::endl;
 }
