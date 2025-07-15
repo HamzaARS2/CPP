@@ -12,7 +12,9 @@ class ISorter {
 		virtual void	sortPairs() = 0;
 		virtual void	insert() = 0;
 		virtual	void	sort(std::vector<std::pair<int, int> > v) = 0;
-		
+
+		static int	binarySearch(std::vector<int> v, int e);
+		static int	jacobOf(int n);
 		// virtual ~ISorter () = 0;
 };
 

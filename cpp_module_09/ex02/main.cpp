@@ -92,7 +92,7 @@ int	binarySearch(std::vector<int> v, int e) {
 		m = l + (size / 2);
 		if (e > v[m]) 
 			l = m + 1;
-		else if (e < v[m]) 
+		else if (e < v[m])
 			r = m - 1;
 		else 
 			return m;
