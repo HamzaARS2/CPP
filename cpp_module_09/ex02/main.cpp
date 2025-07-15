@@ -63,17 +63,21 @@ int	jacobOf(int n) {
 }
 // 0 1 1 3 5 11
 std::vector<int> getOrderedIndexes(std::vector<int> losers)  {
-	// 14 12 8
-	// 0
+	// 2 7 9 5 8 4
+	// 0 2 1 4 3
 	std::vector<int> indexes;
-	for (size_t n = 2; n <= losers.size(); n++) {
-		size_t jn = jacobOf(n);
-		if (jn - 1 >= losers.size())
-			break;
-		indexes.push_back(jn - 1);
-		int prevJ = jacobOf(n - 1);
-		for (int i = jn - 1; i > prevJ ; i--)
-			indexes.push_back(i - 1);
+	size_t n = 2;
+	while (indexes.size() < losers.size()) {
+		size_t jn = jacobOf(n); // 1, 3, 5, 11
+		size_t idx = jn - 1; // 0, 2, 4, 10
+		if (idx < losers.size())
+			indexes.push_back(idx);
+		int prevJ = jacobOf(n - 1); // 1, 1, 3, 5
+		for (int i = idx - 1; i >= prevJ; i--) {
+			if ((size_t)i < losers.size())// 9, 8, 7, 6, 5
+				indexes.push_back(i);
+		}
+		n++;
 	}
 	return indexes;
 }
@@ -99,28 +103,12 @@ int	binarySearch(std::vector<int> v, int e) {
 void	binaryInsert(std::vector<int>& winners, std::vector<int>& losers, int unpaired) {
 	if (losers.empty())
 		return;
-	// winners.insert(winners.begin(), losers[0]);
 	std::vector<int> indexes = getOrderedIndexes(losers);
-	std::cout << "indexes: ";
-	for (size_t i = 0; i < indexes.size(); i++)
-		std::cout << indexes[i] << " ";
-	std::cout << std::endl;
-	std::cout << "losers: ";
-	for (size_t i = 0; i < losers.size(); i++)
-		std::cout << losers[i] << " ";
-	std::cout << std::endl;
-
 	for (size_t i = 0; i < losers.size(); i++) {
-		int idx = indexes.size() < 3 ? i : indexes[i];
-		if (i < indexes.size())
-			std::cout << "inserting: " << indexes[i] << std::endl;
-		else
-			std::cout << "inserting: out of bounds"  << std::endl;
-
+		int idx = indexes[i];
 		int pos = binarySearch(winners, losers[idx]);
 		winners.insert(winners.begin() + pos, losers[idx]);
 	}
-
 	if (unpaired != -1) {
 		int pos = binarySearch(winners, unpaired);
 		winners.insert(winners.begin() + pos, unpaired);
@@ -128,20 +116,19 @@ void	binaryInsert(std::vector<int>& winners, std::vector<int>& losers, int unpai
 }
 
 std::vector<int>	sort(std::vector<int> v) {
-	int unpaired = -1;
-	std::vector<int> winners;
-	std::vector<int> losers;
+	int unpaired = -1; // 14
+	std::vector<int> winners;// 17
+	std::vector<int> losers;// 12
 	std::vector<std::pair<int, int> > pairs;
 	if (v.size() <= 1)
 		return v;
 	// pairing
 	pairs = buildPairs(v, unpaired);
-	printPairs(pairs, unpaired);
 	// comparing within pairs (creating winners and losers)
 	comparePairs(pairs, winners, losers);
-	printWinLosers(winners, losers, unpaired);
+	// calling sort recursively to pair the next level winners
 	winners = sort(winners);
-	
+	//inserting losers into winners of the current recursivity level
 	binaryInsert(winners, losers, unpaired);
 
 	return winners;
