@@ -2,7 +2,7 @@ CC := c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SOURCES := main.cpp VectorSort.cpp
+SOURCES := main.cpp VectorSort.cpp DequeSort.cpp PmergeMe.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME := PmergeMe
 
