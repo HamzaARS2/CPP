@@ -21,13 +21,14 @@ bool	BitcoinExchange::isValidEntry(const String& entry) const {
 	if (entry.empty())
 		return false;
 	int delimiterCount = std::count(entry.begin(), entry.end(), '|');
-	if (delimiterCount == 0 || delimiterCount > 1)
+	if (delimiterCount != 1)
 		return false;
 	size_t pos = entry.find('|');
 	if (entry[pos - 1] != 32 || entry[pos + 1] != 32)
 		return false;
-	while (pos < entry.length() && std::isspace(entry[pos + 1]))
-		pos++;
+	pos++;
+	if (std::isspace(entry[pos + 1]))
+		return false;
 	if (pos <= 0 || pos >= entry.length() - 1)
 		return false;
 	return true;
@@ -68,8 +69,8 @@ bool	BitcoinExchange::parseEntry(const String& entry, std::pair<String, float>* 
 	char*	end;
 
     pair->first = entry.substr(0, pos);
-	while (std::isspace(entry[pos + 1]))
-		pos++;
+	// while (std::isspace(entry[pos + 1]))
+	// 	pos++;
     pair->second = std::strtod(entry.substr(pos + 1).c_str(), &end);
 	if (*end != 0) {
 		reportError("not a number", "");
