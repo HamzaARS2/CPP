@@ -70,8 +70,6 @@ bool	BitcoinExchange::parseEntry(const String& entry, std::pair<String, float>* 
 	char*	end;
 
     pair->first = entry.substr(0, pos);
-	// while (std::isspace(entry[pos + 1]))
-	// 	pos++;
     pair->second = std::strtod(entry.substr(pos + 1).c_str(), &end);
 	if (*end != 0) {
 		reportError("not a number", "");
