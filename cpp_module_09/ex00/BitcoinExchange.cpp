@@ -18,6 +18,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other) {
 }
 
 bool	BitcoinExchange::isValidEntry(const String& entry) const {
+
 	if (entry.empty())
 		return false;
 	int delimiterCount = std::count(entry.begin(), entry.end(), '|');
@@ -121,6 +122,10 @@ void	BitcoinExchange::computeExchange()  {
 	if (!in.is_open())
 		throw std::runtime_error("Error: input file can't be opened.");
 	std::getline(in, entry);
+	if (entry != "date | value") {
+		reportError("input file header not valid", entry);
+		return ;
+	}
 	while (std::getline(in, entry))
 		processLine(entry);
 	in.close();
