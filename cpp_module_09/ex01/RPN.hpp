@@ -10,8 +10,8 @@ typedef std::string String;
 class RPN {
 	private:
 		String expression;
-		int result;
-		std::stack<int> stack;
+		double result;
+		std::stack<double> stack;
 		bool	isSolved;
 		bool	isValid;
 

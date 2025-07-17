@@ -33,9 +33,9 @@ void	RPN::setExpression(const String& expression) {
 bool	RPN::runOperation(char operation) {
 	if (stack.size() <= 1)
 		return false;
-	int o2 = stack.top();
+	double o2 = stack.top();
 	stack.pop();
-	int o1 = stack.top();
+	double o1 = stack.top();
 	stack.pop();
 
 	switch(operation) {
