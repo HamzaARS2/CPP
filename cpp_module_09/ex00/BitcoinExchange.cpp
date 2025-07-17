@@ -105,7 +105,7 @@ void	BitcoinExchange::processLine(const String& entry) const {
 	if (!parseEntry(entry, &entryPair))
 		return;
 	float dbValue;
-	if (!db.getValue(entryPair.first, &dbValue)) {
+	if (!db.getValue(entryPair.first, dbValue)) {
 		reportError("date not found", "");
 		return;
 	}
