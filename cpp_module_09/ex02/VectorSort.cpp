@@ -47,41 +47,23 @@ int	VectorSort::jacobOf(int n) {
 
 std::vector<int> VectorSort::getOrderedIndexes(std::vector<int> losers)  {
 	std::vector<int> indexes;
+	std::vector<bool> used(losers.size(), false);
 	size_t n = 2;
-	while (indexes.size() < losers.size()) {
+	while (true) {
 		size_t jn = jacobOf(n); // 1, 3, 5, 11
 		size_t idx = jn - 1; // 0, 2, 4, 10
-		if (idx < losers.size())
-			indexes.push_back(idx);
-		int prevJ = jacobOf(n - 1); // 1, 1, 3, 5
-		for (int i = idx - 1; i >= prevJ; i--) {
-			if ((size_t)i < losers.size())// 9, 8, 7, 6, 5
-				indexes.push_back(i);
-		}
+		if (idx >= losers.size())
+			break;
+		indexes.push_back(idx);
+		used[idx] = true;
 		n++;
+	}
+	for (size_t i = 0; i < losers.size(); i++) {
+		if (!used[i])
+			indexes.push_back(i);
 	}
 	return indexes;
 }
-
-
-
-// int	VectorSort::binarySearch(std::vector<int> v, int e) {
-// 	// search 5
-// 	// 2 6 8 9 12 14 17 21
-// 	int left = 0;
-// 	int right = v.size();
-// 	static int c = 0;
-// 	while (left < right) {
-//     	int mid = (left + right) / 2;
-// 		c++;
-//     	if (v[mid] < e)
-//         	left = mid + 1;
-//     	else
-//         	right = mid;
-// 	}
-// 	std::cout << "comps: " << c << std::endl;
-// 	return left;
-// }
 
 int	VectorSort::binarySearch(std::vector<int> v, int e) {
 	// search 5
@@ -95,38 +77,30 @@ int	VectorSort::binarySearch(std::vector<int> v, int e) {
 		c++;
 		if (e > v[m]) 
 			l = m + 1;
-		else 
+		else if (e < v[m])
 			r = m - 1;
+		else
+			return m;
 	}
 	std::cout << "comps: " << c << std::endl;
 	return l;
 }
-// mine
-//54429 without jacob
-// 54441
-// aouky
-//  54542 with
-// 54563 without
+
 void	VectorSort::binaryInsert(std::vector<int>& winners, std::vector<int>& losers, int unpaired) {
 	if (losers.empty())
 		return;
 	std::vector<int> indexes = getOrderedIndexes(losers);
 	for (size_t i = 0; i < losers.size(); i++) {
 		int idx = indexes[i];
-		// int idx = i;
 		int pos = binarySearch(winners, losers[idx]);
 		winners.insert(winners.begin() + pos, losers[idx]);
 	}
-	// if (unpaired != -1) {
-	// 	int pos = binarySearch(winners, unpaired);
-	// 	winners.insert(winners.begin() + pos, unpaired);
-	// }
-	(void)unpaired;
+	if (unpaired != -1) {
+		int pos = binarySearch(winners, unpaired);
+		winners.insert(winners.begin() + pos, unpaired);
+	}
 }
-//54441jacob
-//
-//54542 jacob
-//54563 
+
 std::vector<int>	VectorSort::sort(std::vector<int> v) {
 	int unpaired = -1;
 	std::vector<int> winners;

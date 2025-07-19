@@ -47,18 +47,20 @@ int	DequeSort::jacobOf(int n) {
 
 std::deque<int> DequeSort::getOrderedIndexes(std::deque<int> losers)  {
 	std::deque<int> indexes;
+	std::deque<bool> used(losers.size(), false);
 	size_t n = 2;
-	while (indexes.size() < losers.size()) {
+	while (true) {
 		size_t jn = jacobOf(n); // 1, 3, 5, 11
 		size_t idx = jn - 1; // 0, 2, 4, 10
-		if (idx < losers.size())
-			indexes.push_back(idx);
-		int prevJ = jacobOf(n - 1); // 1, 1, 3, 5
-		for (int i = idx - 1; i >= prevJ; i--) {
-			if ((size_t)i < losers.size())// 9, 8, 7, 6, 5
-				indexes.push_back(i);
-		}
+		if (idx >= losers.size())
+			break;
+		indexes.push_back(idx);
+		used[idx] = true;
 		n++;
+	}
+	for (size_t i = 0; i < losers.size(); i++) {
+		if (!used[i])
+			indexes.push_back(i);
 	}
 	return indexes;
 }
