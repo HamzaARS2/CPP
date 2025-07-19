@@ -70,11 +70,9 @@ int	VectorSort::binarySearch(std::vector<int> v, int e) {
 	// 2 6 8 9 12 14 17 21
 	int l = 0, r = v.size() - 1;
 	int m;
-	static int c = 0;
 	while (l <= r) {
 		int size = r - l;
 		m = l + (size / 2);
-		c++;
 		if (e > v[m]) 
 			l = m + 1;
 		else if (e < v[m])
@@ -82,7 +80,6 @@ int	VectorSort::binarySearch(std::vector<int> v, int e) {
 		else
 			return m;
 	}
-	std::cout << "comps: " << c << std::endl;
 	return l;
 }
 
